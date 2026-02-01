@@ -19,7 +19,9 @@ servers:
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
   ssl: true
-  host: tickets.ascheri.website
+  host: 
+    - tickets.ascheri.website
+    - www.tickets.ascheri.website
 
 # Credentials for your image host.
 registry:
@@ -94,5 +96,7 @@ accessories:
         POSTGRES_DB: support_tickets_production
       secret:
         - POSTGRES_PASSWORD
+    files:
+      - db/production.sql:/docker-entrypoint-initdb.d/setup.sql    
     directories:
       - data:/var/lib/postgresql/data

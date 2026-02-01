@@ -1,0 +1,4 @@
+CREATE DATABASE support_tickets_production;
+CREATE DATABASE support_tickets_production_cache;
+CREATE DATABASE support_tickets_production_cable;
+CREATE DATABASE support_tickets_production_queue;
