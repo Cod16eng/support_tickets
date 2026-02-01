@@ -1,0 +1,37 @@
+<div class="container">
+    <h1>User Details</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><%= @user.name %></h5>
+            
+            <p class="card-text">
+                <strong>Username:</strong>
+                <%= @user.username %>
+            </p>
+            
+            <p class="card-text">
+                <strong>Email:</strong>
+                <%= @user.email %>
+            </p>
+            
+            <p class="card-text">
+                <strong>Role:</strong>
+                <%= @user.role&.titleize %>
+            </p>
+            
+            <p class="card-text">
+                <strong>Created at:</strong>
+                <%= @user.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+            </p>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <% if @user.id == current_user.id %>
+            <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary' %>
+            <%= link_to 'Delete', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        <% end %>
+        <%= link_to 'Back', users_path, class: 'btn btn-secondary' %>
+    </div>
+</div>

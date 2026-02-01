@@ -1,0 +1,49 @@
+<%= form_with(model: user, local: true) do |form| %>
+    <% if user.errors.any? %>
+        <div class="alert alert-danger">
+            <h4><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h4>
+            <ul>
+                <% user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="mb-3">
+        <%= form.label :name, class: 'form-label' %>
+        <%= form.text_field :name, class: 'form-control', placeholder: 'Enter name' %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label :username, class: 'form-label' %>
+        <%= form.text_field :username, class: 'form-control', placeholder: 'Enter username' %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label :email, class: 'form-label' %>
+        <%= form.email_field :email, class: 'form-control', placeholder: 'Enter email' %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label :password, class: 'form-label' %>
+        <%= form.password_field :password, class: 'form-control', placeholder: 'Enter password' %>
+        <% if user.persisted? %>
+            <div class="form-text">Leave blank to keep current password</div>
+        <% end %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label :password_confirmation, class: 'form-label' %>
+        <%= form.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm password' %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label :role, class: 'form-label' %>
+        <%= form.select :role, [['Admin', 'admin'], ['Support Agent', 'support'], ['User', 'user']], {}, class: 'form-select' %>
+    </div>
+
+    <div class="actions">
+        <%= form.submit class: 'btn btn-primary' %>
+    </div>
+<% end %>
