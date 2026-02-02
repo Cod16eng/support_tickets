@@ -42,6 +42,9 @@ RUN bundle install && \
 # Copy application code
 COPY . .
 
+# Fix permissions on bin/ scripts (critical for ./bin/rails, ./bin/docker-entrypoint, etc.)
+RUN chmod +x bin/* bin/docker-entrypoint
+
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
